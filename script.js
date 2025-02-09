@@ -50,6 +50,8 @@ const questions = [
 const questionElement = document.getElementById("question");
 const answerButton = document.getElementById("answer-buttons");
 const nextButton = document.getElementById("next-btn");
+const progressId1 = document.getElementById("progress-id");
+const progressId2 = document.getElementById("progress-id-2");
 
 let currentQuestionIndex = 0;
 let score = 0;
@@ -66,6 +68,7 @@ function showQuestion() {
   let currentQuestion = questions[currentQuestionIndex];
   let questionNo = currentQuestionIndex + 1;
   questionElement.innerHTML = questionNo + ". " + currentQuestion.question;
+  
 
   currentQuestion.answers.forEach((answer) => {
     const button = document.createElement("button");
@@ -77,7 +80,11 @@ function showQuestion() {
     }
     button.addEventListener("click", selectAnswer);
   });
+  progressId1.textContent = questionNo  
+  progressId2.textContent = questions.length
+
 }
+
 
 function resetState() {
   nextButton.style.display = "none";
@@ -106,8 +113,8 @@ function selectAnswer(e) {
 
 function showScore() {
   resetState();
-  questionElement.innerHTML = `You scored ${score} out of ${questions.length}!`;
-  nextButton.innerHtml = "Play Again";
+  questionElement.innerHTML = `You scored ${score} out of ${questions.length}`;
+  nextButton.textContent = "Restart";
   nextButton.style.display = "block";
 }
 
